@@ -10,16 +10,16 @@ source:
   sha256: 6b76ee30309449df02b5eda0309652fdf6a75ac879ef7e5a28a6db8efaa462c7
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install -vv .
   noarch: python
 
 requirements:
   host:
-    - python =3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python =3.7
+    - python >={{ python_min }}
     - requests
     - sseclient =0.0.22
     - sbml2sbol >=0.1.13
@@ -29,6 +29,7 @@ test:
     - tests
   requires:
     - pytest
+    - python {{ python_min }}
   commands:
     - python -m pytest
 
